@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-adversarial-arena"
+version = "0.1.0"
+description = "Pit LLMs against each other in structured adversarial games — debate, negotiation, bluffing, with ELO ratings"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Abhi Wadhwa"},
+]
+keywords = ["llm", "adversarial", "debate", "negotiation", "game-theory", "elo"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "openai>=1.0.0",
+    "anthropic>=0.18.0",
+    "streamlit>=1.30.0",
+    "pydantic>=2.0.0",
+    "rich>=13.0.0",
+    "click>=8.0.0",
+    "plotly>=5.18.0",
+    "pandas>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.2.0",
+    "mypy>=1.8.0",
+]
+
+[project.scripts]
+arena = "src.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/abhi-wadhwa/llm-adversarial-arena"
+Repository = "https://github.com/abhi-wadhwa/llm-adversarial-arena"
+Issues = "https://github.com/abhi-wadhwa/llm-adversarial-arena/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
